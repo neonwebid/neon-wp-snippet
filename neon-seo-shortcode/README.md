@@ -4,7 +4,7 @@ Shortcode Title Yoast, All in One SEO, Rank Math [neon-seo-shortcode.php](neon-s
 
 copas kode kedalam file ``functions.php``
 
-Cara Menggunakan Shortcodew
+Cara Menggunakan Shortcode pada Title dan Meta Deskripisi
 ```
 [neon_current_year]
 ```
