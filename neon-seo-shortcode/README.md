@@ -18,4 +18,8 @@ untuk menampilkan Bulan dan Tahun
 ```
 [neon_month_year_id]
 ```
-untuk menampilkan bulan dan tahun dalam bahasa indosia
+untuk menampilkan bulan dan tahun dalam bahasa indonesia
+
+## Diskusi & Pertanyaan
+:warning:  Jika ada pertanyaan dapat ditanyakan dimenu [diskusi](https://github.com/neonwebid/neon-wp-snippet/discussions) :coffee:  
+:link:  Visit Our Site: [neon.web.id](https://neon.web.id)
