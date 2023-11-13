@@ -1,14 +1,14 @@
 <?php
 
-class QueryBuilder {
+class QueryBuilderHelper {
 
 	private $db;
 
-	private $query;
+	private array $query;
 
-	private $query_string;
+	private string $query_string;
 
-	public static function instance(): QueryBuilder {
+	public static function instance():QueryBuilderHelper {
 		return new self();
 	}
 
@@ -17,51 +17,51 @@ class QueryBuilder {
 		$this->db = $wpdb;
 	}
 
-	public function select( $columns ): QueryBuilder {
+	public function select( $columns ): QueryBuilderHelper {
 		$this->query['select'] = is_array( $columns ) ? implode( ', ', $columns ) : $columns;
 
 		return $this;
 	}
 
-	public function from( $table ): QueryBuilder {
+	public function from( $table ): QueryBuilderHelper {
 		$this->query['from'] = $this->db->prefix . $table;
 
 		return $this;
 	}
 
-	public function join( $table, $condition, $type = 'INNER' ): QueryBuilder {
+	public function join( $table, $condition, $type = 'INNER' ): QueryBuilderHelper {
 		$table = $this->db->prefix.$table;
 		$this->query['join'][] = "{$type} JOIN {$table} ON {$condition}";
 
 		return $this;
 	}
 
-	public function where( $condition ): QueryBuilder {
+	public function where( $condition ): QueryBuilderHelper {
 		$this->query['where'] = $condition;
 
 		return $this;
 	}
 
-	public function groupBy( $columns ): QueryBuilder {
+	public function groupBy( $columns ): QueryBuilderHelper {
 		$this->query['group_by'] = is_array( $columns ) ? implode( ', ', $columns ) : $columns;
 
 		return $this;
 	}
 
-	public function orderBy( $columns, $direction = 'ASC' ): QueryBuilder {
+	public function orderBy( $columns, $direction = 'ASC' ): QueryBuilderHelper {
 		$this->query['order_by']        = is_array( $columns ) ? implode( ', ', $columns ) : $columns;
 		$this->query['order_direction'] = $direction;
 
 		return $this;
 	}
 
-	public function limit( $limit ): QueryBuilder {
+	public function limit( $limit ): QueryBuilderHelper {
 		$this->query['limit'] = $limit;
 
 		return $this;
 	}
 
-	public function offset( $offset ): QueryBuilder {
+	public function offset( $offset ): QueryBuilderHelper {
 		$this->query['offset'] = $offset;
 
 		return $this;
@@ -133,7 +133,7 @@ class QueryBuilder {
 		$this->db->flush();
 	}
 
-	public function printSQL() {
+	public function printSQL(): string {
 		return $this->query_string;
 	}
 }
